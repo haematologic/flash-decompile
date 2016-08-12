@@ -1,0 +1,14 @@
+.DS_store
+extracts/
+text/
+rips/
+dumps/
+morphology/
+data/
+backup/
+extracts/
+junk/
+other/
+*.dat
+*.swp
+*.un~
