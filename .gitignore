@@ -12,3 +12,4 @@ other/
 *.dat
 *.swp
 *.un~
+__pycache__
