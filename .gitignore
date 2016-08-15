@@ -13,3 +13,5 @@ other/
 *.swp
 *.un~
 __pycache__
+dats/
+.idea/

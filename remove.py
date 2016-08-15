@@ -72,14 +72,15 @@ def searchlines(query_set, f, query_ext=None):
 		result = 0			
 
 		for query_string in query_set:
-			if query_ext:
+			print(query_string,query_ext)
+			if re.search(query_ext,query_string, re.I):
+				pattern = re.compile('.+\\'+query_string+'$', re.I)
+				match = pattern.search(line)
+			else:
+				print("md")
 				query_string=query_string+query_ext
 				pattern = re.compile(query_string, re.I)
 				match = pattern.match(line)
-
-			else:
-				pattern = re.compile('.+\\'+query_string+'$', re.I)
-				match = pattern.search(line)
 				
 			if match and result < 1:
 				
@@ -88,7 +89,7 @@ def searchlines(query_set, f, query_ext=None):
 				#print(result)
 
 				resv.append((result, ln, match, line))
-				print("%d: '%s' found in line %d of '%s':\t%s" % (result, match, ln, f, line))
+				#print("%d: '%s' found in line %d of '%s':\t%s" % (result, match, ln, f, line))
 			
 			else:
 
@@ -114,8 +115,9 @@ def replacelines(query_set, f, query_ext=None, new_ext=None):
 
 		if (resv[0]==1):
 
-			#repl = re.sub(query_ext,new_ext,resv[3],re.I)
-			#print("%d: %s %d query '%s' found replaced with '%s' in line: %s" % (resv[0], f, resv[1], resv[2]+query_ext, repl, resv[3]))
+			repl = re.sub(query_ext,new_ext,resv[3],re.I)
+
+			print("%d: %s %d query '%s' found replaced with '%s' in line: %s" % (resv[0], f, resv[1], resv[2], repl, resv[3]))
 			pass
 
 		elif (resv[0]==0):
